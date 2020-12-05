@@ -127,6 +127,7 @@ For more information please take a look on https://github.com/radomirbrkovic/360
       const slider =   new $.ThreeSixtySlider(options)
       var clientX = 0
       const _this = this
+      var element = document.getElementById(this.attr('id'))
 
       this.mousemove(function(e){
         e.preventDefault()
@@ -187,6 +188,31 @@ For more information please take a look on https://github.com/radomirbrkovic/360
            $(this).find('i').removeClass('fa-pause').addClass('fa-play')
         }
 
+      })
+
+      element.addEventListener('touchmove', function(e) {
+        e.preventDefault()
+        var touch = e.touches[0];
+        if(clientX == 0)
+          clientX= touch.pageX
+
+        slider.settings.autoplay = false
+        if(touch.pageX > (clientX+10)){
+          clientX = touch.pageX
+          slider.setActiveImage(slider.active + 1)
+        } else if (touch.pageX < (clientX - 10)) {
+            clientX = touch.pageX 
+            var index = slider.active
+            if(index == 0){
+                index = slider.settings.images.length
+            }
+            slider.setActiveImage(index - 1)
+        }
+      })
+
+      element.addEventListener('touchend', function(e) {
+        e.preventDefault()
+        clientX = 0
       })
     }
 
