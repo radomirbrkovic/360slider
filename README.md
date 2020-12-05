@@ -2,12 +2,6 @@
 
 This is a simple jQuery plugin for 360° image slider which provides you easy implementation and a lot of control options. 
 
-## Dependencies
-
-- jQuery 3.*
-- Bootstrap CSS 
-- Font awesome v-4.*
-
 
 ## Features
 - **Smooth animation**
